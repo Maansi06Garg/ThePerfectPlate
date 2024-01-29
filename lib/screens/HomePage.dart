@@ -11,10 +11,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var dishes=[
-    ["Pizza","onion, tomato","lib/assets/pizza.png"],
-    ["Burger","Capsicon, cheese","lib/assets/burger.png"],
-    ["Shake","cherry","lib/assets/shake.png"],
-    ["Fried rice","Carrot","lib/assets/rice.png"],
+    ["Pizza","onion, tomato, Mushroom, Capsicum, Pepper","lib/assets/pizza.png","Rs. 100"],
+    ["Burger","Capsicum, cheese, tomato, onion","lib/assets/burger.png","Rs. 40"],
+    ["Chocolate Shake","cookies like oreo, candy bar, chocolate chips, cherry","lib/assets/shake.png","Rs. 80"],
+    ["Fried rice","Carrot, Green pea, onion, tomato,  Mushroom","lib/assets/rice.png","Rs. 60"],
+    ["Veg North Thali","Dal Makhni, Paneer, Palak Paneer, Rice, Salad,4 Naan, Kheer","lib/assets/signup.jpg","Rs. 250"],
+    ["Veg Chinese Meal","Spring Roll, Momos, Kimchi Salad, Paneer chilli, Manchurian,Noodles","lib/assets/chinese.png","Rs. 280"],
+
   ];
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           return ListTile(
               title:Container(
            width: MediaQuery.of(context).size.width/(4/3),
-           height: MediaQuery.of(context).size.height/10,
+           height: MediaQuery.of(context).size.height/8,
            color: Colors.grey.shade50,
                 child:ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -52,17 +55,21 @@ class _HomePageState extends State<HomePage> {
                     child:Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(dishes![index][0]),
-                  Text(dishes![index][1]),
-                ],
+              Container(
+                width:MediaQuery.of(context).size.width/(2),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(dishes![index][0],style: TextStyle(fontSize: 18),),
+                    Text(dishes![index][1]),
+                  ],
+                ),
               ),
               // SizedBox(width:10),
-              Image.asset(dishes![index][2],width:45,height:55),
+              Image.asset(dishes![index][2],width:55,height:65),
             ],
           ),),
         ),);},

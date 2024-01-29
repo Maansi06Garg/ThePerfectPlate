@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_perfect_plate/screens/HomePage.dart';
 import 'package:the_perfect_plate/screens/profile.dart';
+import 'package:the_perfect_plate/screens/vistors.dart';
 import '../utils/Routes.dart';
 import '../screens/Signup.dart';
 import '../screens/Login.dart';

@@ -93,11 +93,11 @@ class _SignUpState extends State<SignUp> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children:[
                         ClipRRect(
-                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
+                          // borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
-                            height: 45,
+                            // height: 65,
                             width: 290,
-                            color: Colors.grey,
+                            // color: Colors.grey,
                             child: TextFormField(
                               controller: nameController,
                               decoration: InputDecoration(
@@ -142,11 +142,11 @@ class _SignUpState extends State<SignUp> {
                         //   ),
                         // ),const SizedBox(height:10),
                         ClipRRect(
-                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
+                          // borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
-                            height: 45,
+                            // height: 65,
                             width: 290,
-                            color: Colors.grey,
+                            // color: Colors.grey,
                             child: TextFormField(
                               controller: emailController,
                               decoration: InputDecoration(
@@ -173,11 +173,11 @@ class _SignUpState extends State<SignUp> {
                         ),
                         const SizedBox(height:10),
                         ClipRRect(
-                          borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
+                          // borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                           child: Container(
-                            height: 45,
+                            // height: 65,
                             width: 290,
-                            color: Colors.grey,
+                            // color: Colors.grey,
                             child: TextFormField(
                               controller: passController,
                               obscureText: obscureText,
@@ -212,7 +212,7 @@ class _SignUpState extends State<SignUp> {
                         const SizedBox(height: 25,),
                         const SizedBox(height: 20,),
                         SizedBox(
-                          height: 45,
+                          height: 65,
                           width: 290,
                           child: ElevatedButton(onPressed: (){
                             if (_formKey.currentState!.validate()){

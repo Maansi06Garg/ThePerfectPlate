@@ -88,10 +88,10 @@ class _LoginState extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:[
                       ClipRRect(
-                        borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
+                        // borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                         child: Container(
                           width: 290,
-                          color: Colors.grey,
+                          // color: Colors.grey,
                           child: TextFormField(
                             controller: emailController,
                             decoration: InputDecoration(
@@ -118,10 +118,10 @@ class _LoginState extends State<Login> {
                       ),
                       const SizedBox(height:15),
                       ClipRRect(
-                        borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
+                        // borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
                         child: Container(
                           width: 290,
-                          color: Colors.grey,
+                          // color: Colors.grey,
                           child: TextFormField(
                             controller: passController,
                             obscureText: obscureText,
@@ -203,3 +203,227 @@ class _LoginState extends State<Login> {
     );
   }
 }
+//
+// // import 'package:auto_route/auto_route.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:flutter/material.dart';
+// import 'package:the_perfect_plate/models/storeToken.dart';
+//
+// // String key= 'accessToken';
+// // @RoutePage()
+// class Login extends StatelessWidget {
+//   const Login({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         toolbarHeight: 100,
+//         backgroundColor: Colors.blueAccent,
+//         title: Padding(
+//           padding: const EdgeInsets.all(10.0),
+//           child: Row(
+//             children: [
+//               Image.asset('lib/assets/AKGEC.png',width: MediaQuery.of(context).size.width/8,),
+//               SizedBox(width: 10,),
+//               const Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text("AJAY KUMAR GARG",style: TextStyle(color: Colors.white),),
+//                   Text("ENGINEERING COLLEGE",style: TextStyle(color: Colors.white),),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ),
+//         centerTitle: true,
+//       ),
+//       body: SingleChildScrollView(
+//         child: Stack(
+//           children: <Widget>[
+//             Container(
+//               height: MediaQuery.of(context).size.height/5,
+//               width: MediaQuery.of(context).size.width,
+//               color: Colors.blueAccent,
+//             ),
+//             Positioned(child: Container(
+//               width: MediaQuery.of(context).size.width,
+//               height: MediaQuery.of(context).size.height,
+//               color: Colors.blue.shade50,
+//             ),
+//              top: MediaQuery.of(context).size.height/5,),
+//             Positioned(child:
+//             Center(
+//               child: Column(
+//                 children: [
+//                   ClipRRect(
+//                     borderRadius: BorderRadiusDirectional.all(Radius.circular(9.0)),
+//                     child: Container(
+//                       color: Colors.white,
+//                       width: MediaQuery.of(context).size.width/1.2,
+//                       child: Padding(
+//                         padding: const EdgeInsets.all(18.0),
+//                         child: Column(
+//                           crossAxisAlignment: CrossAxisAlignment.stretch,
+//                           children: [
+//                             const SizedBox(
+//                               height: 20,
+//                             ),
+//                             Text("JAI HIND!",style:TextStyle(color: Colors.black,fontSize:35,fontWeight:FontWeight.w600)),
+//                             Text("Login to continue",style:TextStyle(fontWeight: FontWeight.w300)),
+//                             SizedBox(
+//                               width: 150,
+//                               height: 150,
+//                               child: Image.asset('lib/assets/login_v.png'),
+//                             ),
+//                             // const SizedBox(height: 80),
+//                             const LoginForm(),
+//                           ],
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                   SizedBox(height:20),
+//                   Image.asset("lib/assets/blockChainLogo.png",
+//                   width: MediaQuery.of(context).size.width/1.4,
+//                   // height: 50,
+//                   ),
+//                 ],
+//               ),
+//             ),
+//               )
+//         ],
+//       ),
+//       ),
+//     );
+//   }
+// }
+//
+// class LoginForm extends StatefulWidget {
+//   const LoginForm({super.key});
+//
+//   @override
+//   State<LoginForm> createState() => _LoginFormState();
+// }
+//
+// class _LoginFormState extends State<LoginForm> {
+//   final TextEditingController _emailController = TextEditingController();
+//   final TextEditingController _passwordController = TextEditingController();
+//
+//   bool _isPasswordVisible = false;
+//   final _formKey = GlobalKey<FormState>();
+//
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Form(
+//       key: _formKey,
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Text("Username"),
+//           Container(
+//             color: Colors.grey.shade200,
+//             child: TextFormField(
+//               controller: _emailController,
+//               decoration: InputDecoration(
+//                 hintText: 'Enter your username',
+//                 // prefixIcon: Icon(Icons.email),
+//
+//               border:OutlineInputBorder(
+//                 borderRadius: BorderRadius.circular(3.0),
+//               ),),
+//               autovalidateMode: AutovalidateMode.onUserInteraction,
+//               validator: (value) {
+//                 if (value == null || value.isEmpty) {
+//                   return "Username can't be empty";
+//                 }
+//                 // if (!RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$')
+//                 //     .hasMatch(value)) {
+//                 //   return 'Invalid email address';
+//                 // }
+//                 return null;
+//               },
+//             ),
+//           ),
+//           const SizedBox(height: 12),
+//           Text("Password"),
+//           Container(
+//             color: Colors.grey.shade200,
+//             child: TextFormField(
+//               controller: _passwordController,
+//               obscureText: !_isPasswordVisible,
+//               autovalidateMode: AutovalidateMode.onUserInteraction,
+//               decoration: InputDecoration(
+//                 // labelText: 'Password',
+//                 hintText: '*******',
+//                 // prefixIcon: const Icon(Icons.lock),
+//                 suffixIcon: IconButton(
+//                   icon: Icon(
+//                     _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+//                   ),
+//                   onPressed: () {
+//                     setState(() {
+//                       _isPasswordVisible = !_isPasswordVisible;
+//                     });
+//                   },
+//                 ),
+//                 border: OutlineInputBorder(
+//                   borderRadius:BorderRadius.circular(5.0),
+//                 )
+//               ),
+//               validator: (value) {
+//                 if (value == null || value.isEmpty) {
+//                   return "Password can't be empty";
+//                 }
+//                 return null;
+//               },
+//             ),
+//           ),
+//           const SizedBox(height: 40),
+//           SizedBox(
+//             width: MediaQuery.of(context).size.width,
+//             child: ElevatedButton(
+//               style: ElevatedButton.styleFrom(
+//                 backgroundColor: const Color.fromARGB(255, 102, 133, 250),
+//                 shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(8.0),
+//                 ),
+//               ),
+//               onPressed: () async {
+//                 if (_formKey.currentState!.validate()) {
+//                   final email = _emailController.text;
+//                   final password = _passwordController.text;
+//                   if (kDebugMode) {
+//                     print('Email: $email, Password: $password');
+//                   }
+//                   final SecureStorage secureStorage = SecureStorage();
+//                   dynamic generateResponse = "gstumri87gr";
+//                   secureStorage
+//                       .writeSecureData('key', generateResponse)
+//                       .then(
+//                         (_) => Navigator.of(context).pushReplacementNamed('/home'),
+//                   )
+//                       .catchError(
+//                         (error) => ScaffoldMessenger.of(context).showSnackBar(
+//                       SnackBar(
+//                         content: Text(error),
+//                       ),
+//                     ),
+//                   );
+//                 }
+//               },
+//               child: const Text(
+//                 'Login',
+//                 style: TextStyle(
+//                   color: Colors.white,
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
