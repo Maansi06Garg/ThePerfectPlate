@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:the_perfect_plate/models/controller.dart';
 import 'package:the_perfect_plate/screens/profile.dart';
 import 'dart:convert';
 import '../models/storeToken.dart';
@@ -16,11 +17,11 @@ final SecureStorage secureStorage=SecureStorage();
 String key= 'accessToken';
 class _LoginState extends State<Login> {
 
-  TextEditingController emailController =TextEditingController();
   TextEditingController passController =TextEditingController();
+  
 
   Future <void> LoginApi() async {
-    String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/user/login';
+    String apiUrl = 'https://food-application-y9ow.onrender.com/user/login';
     final response = await http.post(
         Uri.parse(apiUrl),
         // headers: <String, String>{
@@ -34,14 +35,14 @@ class _LoginState extends State<Login> {
     print(response.body);
     if (response.statusCode == 200) {
 
-      dynamic generateResponse = jsonDecode(response.body);
+      // dynamic generateResponse = jsonDecode(response.body);
       // Token.fromJson(generateResponse);
-      await secureStorage.writeSecureData(key,generateResponse);
+      await secureStorage.writeSecureData(key,"hhhhhhhmmmmmmmmmmmmmmmaaaaaaaaaaaaaaa");
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Login Successful"),),);
       print('API Response: ${response.body}');
-      // await Navigator.pushNamed(context, MyRoutes.BottomNavBar);
+      await Navigator.pushNamed(context, MyRoutes.HomeRoutes);
 
     } else {
       print('Failed to join the team. Status Code: ${response.statusCode}');
@@ -167,9 +168,10 @@ class _LoginState extends State<Login> {
                         width: 290,
                         child: ElevatedButton(onPressed: (){
                           if (_formKey.currentState!.validate()){
-                          Navigator.pushReplacementNamed(context, MyRoutes.HomeRoutes);
+                          // Navigator.pushReplacementNamed(context, MyRoutes.HomeRoutes);
+                          
+                          LoginApi();
                           }
-                          // LoginApi();
                         },
                           style:ElevatedButton.styleFrom(backgroundColor: Colors.black,
                             // padding: const EdgeInsets.symmetric(horizontal: 30),

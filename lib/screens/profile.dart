@@ -29,7 +29,7 @@ Widget build(BuildContext context) {
           height: 20.0,
         ),
         Text(
-          "User",
+          "Maansi",
           style: TextStyle(
             fontSize: 24.0,
             fontWeight: FontWeight.bold,

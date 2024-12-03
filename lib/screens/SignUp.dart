@@ -25,16 +25,17 @@ class _SignUpState extends State<SignUp> {
 
   Future <void> SignApi() async {
     print("hiii");
-    String apiUrl = 'http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/user/signup';
+    String apiUrl = 'https://food-application-y9ow.onrender.com/user/signup';
     final response = await http.post(
         Uri.parse(apiUrl),
         // headers: <String, String>{
         //   'Content-Type': 'application/json'
         // },
         body:({
-          'name':nameController.text,
+          'username':nameController.text,
           'email':emailController.text,
           'password':passController.text,
+          'address':addController.text
         })
     );
     print("hiii");
@@ -42,7 +43,7 @@ class _SignUpState extends State<SignUp> {
       SnackBar(content: Text(response.body),),);
     if (response.statusCode == 200) {
       print('API Response: ${response.body}');
-      // await Navigator.pushNamed(context, MyRoutes.LoginRoutes);
+      await Navigator.pushNamed(context, MyRoutes.LoginRoutes);
 
     } else {
       print('Failed to join the team. Status Code: ${response.statusCode}');
@@ -53,7 +54,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController emailController =TextEditingController();
   TextEditingController nameController =TextEditingController();
   TextEditingController passController =TextEditingController();
-  TextEditingController roleController =TextEditingController();
+  TextEditingController addController =TextEditingController();
 
   bool obscureText= true;
   @override
@@ -101,7 +102,7 @@ class _SignUpState extends State<SignUp> {
                             child: TextFormField(
                               controller: nameController,
                               decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.person_outline),
+                                prefixIcon: const Icon(Icons.person),
                                 hintText: "Username",
                                 contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 border:OutlineInputBorder(
@@ -150,7 +151,7 @@ class _SignUpState extends State<SignUp> {
                             child: TextFormField(
                               controller: emailController,
                               decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.email_outlined),
+                                prefixIcon: const Icon(Icons.email),
                                 hintText: "Email",
                                 contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 border:OutlineInputBorder(
@@ -208,6 +209,34 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                         ),
+                        const SizedBox(height:10),
+                        ClipRRect(
+                          // borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
+                          child: Container(
+                            // height: 65,
+                            width: 290,
+                            // color: Colors.grey,
+                            child: TextFormField(
+                              controller: addController,
+                              decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.home),
+                                hintText: "Address",
+                                contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
+                                border:OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              autovalidateMode: AutovalidateMode.onUserInteraction,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Address can't be empty";
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ),
+                        
 
                         const SizedBox(height: 25,),
                         const SizedBox(height: 20,),
@@ -217,7 +246,7 @@ class _SignUpState extends State<SignUp> {
                           child: ElevatedButton(onPressed: (){
                             if (_formKey.currentState!.validate()){
                             Navigator.pushReplacementNamed(context, MyRoutes.LoginRoutes);
-                                // SignApi();
+                                SignApi();
                               }
                             },
                             style:ElevatedButton.styleFrom(backgroundColor: Colors.black,
