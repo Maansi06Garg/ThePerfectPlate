@@ -3,7 +3,6 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:the_perfect_plate/screens/HomePage.dart';
 import 'package:the_perfect_plate/screens/profile.dart';
-import 'package:the_perfect_plate/screens/vistors.dart';
 import '../utils/Routes.dart';
 import '../screens/Signup.dart';
 import '../screens/Login.dart';
@@ -12,6 +11,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   final appDocumentDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDir.path);
+  
   if(secureStorage.readSecureData(key)==null){
       runApp(const MyApp());
     }
@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
         routes: {
           '/':(context)=>const SignUp(),
           MyRoutes.SignUpRoutes: (context) => const SignUp(),
-          MyRoutes.LoginRoutes: (context) => Login(),
-          MyRoutes.ProfileRoutes: (context) => Profile(),
-          MyRoutes.HomeRoutes: (context) => HomePage(),
+          MyRoutes.LoginRoutes: (context) => const Login(),
+          MyRoutes.ProfileRoutes: (context) => const Profile(),
+          MyRoutes.HomeRoutes: (context) => const HomePage(),
 
         }
     );
@@ -49,9 +49,9 @@ class MyApp2 extends StatelessWidget {
         routes: {
           '/':(context)=>const HomePage(),
           MyRoutes.SignUpRoutes: (context) => const SignUp(),
-          MyRoutes.LoginRoutes: (context) => Login(),
-          MyRoutes.ProfileRoutes: (context) => Profile(),
-          MyRoutes.HomeRoutes: (context) => HomePage(),
+          MyRoutes.LoginRoutes: (context) => const Login(),
+          MyRoutes.ProfileRoutes: (context) => const Profile(),
+          MyRoutes.HomeRoutes: (context) => const HomePage(),
 
         }
     );

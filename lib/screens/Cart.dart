@@ -4,12 +4,11 @@ import 'package:hive/hive.dart';
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
     final cartBox = Hive.box('cart');
     final cartItems = cartBox.values.toList();
 
-    void showItemDetails(BuildContext context, dynamic item, int index) {
-      int quantity = item['quantity'] ?? 1; // Initialize quantity
-
+    void showItemDetails(BuildContext context, dynamic item, int index) { 
       showDialog(
         context: context,
         builder: (context) => StatefulBuilder(
@@ -20,29 +19,29 @@ class CartScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(item['image'], height: 150, fit: BoxFit.cover),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text("Includes: ${item['description']}",
-                    style: TextStyle(fontSize: 15)),
-                SizedBox(height: 10),
+                    style: const TextStyle(fontSize: 15)),
+                const SizedBox(height: 10),
                 item['customization'] == ""
-                    ? Text("No Customization")
+                    ? const Text("No Customization")
                     : Text(
                         "Customization: ${item['customization']}",
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text("Each Price: ${item['Each Price']}",
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
-                SizedBox(height: 10),
+                    style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Quantity: ${item['Quantity']}",
-                        style: TextStyle(fontSize: 15)),
+                        style: const TextStyle(fontSize: 15)),
                     Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.remove, color: Colors.red),
+                          icon: const Icon(Icons.remove, color: Colors.red),
                           onPressed: () {
                             if (item['Quantity'] > 1) {
                               setState(() {
@@ -52,7 +51,7 @@ class CartScreen extends StatelessWidget {
                           },
                         ),
                         IconButton(
-                          icon: Icon(Icons.add, color: Colors.green),
+                          icon: const Icon(Icons.add, color: Colors.green),
                           onPressed: () {
                             setState(() {
                               item['Quantity']++;
@@ -69,7 +68,6 @@ class CartScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  
                   ElevatedButton(
                     onPressed: () {
                       final updatedItem = {
@@ -77,33 +75,33 @@ class CartScreen extends StatelessWidget {
                         'quantity': item['Quantity'],
                         // 'totalPrice': item['Quantity'] * item['Each Price'],
                       };
-                      cartBox.putAt(index, updatedItem); // Update the item
-                      Navigator.pop(context); // Close the dialog
+                      cartBox.putAt(index, updatedItem); 
+                      Navigator.pop(context); 
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("${item['name']} updated")),
                       );
                     },
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                    child: Text("Update"),
+                    child: const Text("Update"),
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      cartBox.deleteAt(index); // Remove the item
-                      Navigator.pop(context); // Close the dialog
+                      cartBox.deleteAt(index);
+                      Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("${item['name']} removed from cart")),
                       );
                     },
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                    child: Text("Remove"),
+                    child: const Text("Remove"),
                   ),
                 ],
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context); // Close the dialog
+                  Navigator.pop(context); 
                 },
-                child: Text("Close"),
+                child: const Text("Close"),
               ),
             ],
           ),
@@ -118,14 +116,14 @@ class CartScreen extends StatelessWidget {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text("Confirm Order"),
+          title: const Text("Confirm Order"),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextField(
                   controller: addressController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "Address",
                     hintText: "Enter your delivery address",
                     border: OutlineInputBorder(),
@@ -135,11 +133,12 @@ class CartScreen extends StatelessWidget {
                 SizedBox(height: 10),
                 TextField(
                   controller: phoneController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "Phone Number",
                     hintText: "Enter your contact number",
                     border: OutlineInputBorder(),
                   ),
+                  maxLength: 10,
                   keyboardType: TextInputType.phone,
                 ),
               ],
@@ -148,16 +147,16 @@ class CartScreen extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // Close the dialog
+                Navigator.pop(context); 
               },
-              child: Text("Cancel"),
+              child:const Text("Cancel"),
             ),
             ElevatedButton(
               onPressed: () {
                 if (addressController.text.isNotEmpty &&
                     phoneController.text.isNotEmpty) {
-                  Navigator.pop(context); // Close the dialog
-                  cartBox.clear(); // Clear the cart
+                  Navigator.pop(context); 
+                  cartBox.clear(); 
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(

@@ -10,46 +10,6 @@ class SignUp extends StatefulWidget {
 }
 class _SignUpState extends State<SignUp> {
 
-  Future <void> google() async{
-    var request = http.Request('GET', Uri.parse('http://ec2-3-7-70-25.ap-south-1.compute.amazonaws.com:8006/googleOAuth'));
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
-      // Navigator.pushReplacementNamed(context, MyRoutes.BottomNavBar);
-    }
-    else {
-      print(response.reasonPhrase);
-    }
-  }
-
-  Future <void> SignApi() async {
-    print("hiii");
-    String apiUrl = 'https://food-application-y9ow.onrender.com/user/signup';
-    final response = await http.post(
-        Uri.parse(apiUrl),
-        // headers: <String, String>{
-        //   'Content-Type': 'application/json'
-        // },
-        body:({
-          'username':nameController.text,
-          'email':emailController.text,
-          'password':passController.text,
-          'address':addController.text
-        })
-    );
-    print("hiii");
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(response.body),),);
-    if (response.statusCode == 200) {
-      print('API Response: ${response.body}');
-      await Navigator.pushNamed(context, MyRoutes.LoginRoutes);
-
-    } else {
-      print('Failed to join the team. Status Code: ${response.statusCode}');
-      print('Error Message: ${response.body}');
-    }
-  }
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController =TextEditingController();
   TextEditingController nameController =TextEditingController();
@@ -95,7 +55,7 @@ class _SignUpState extends State<SignUp> {
                       children:[
                         ClipRRect(
                           // borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
-                          child: Container(
+                          child: SizedBox(
                             // height: 65,
                             width: 290,
                             // color: Colors.grey,
@@ -144,7 +104,7 @@ class _SignUpState extends State<SignUp> {
                         // ),const SizedBox(height:10),
                         ClipRRect(
                           // borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
-                          child: Container(
+                          child:SizedBox(
                             // height: 65,
                             width: 290,
                             // color: Colors.grey,
@@ -175,7 +135,7 @@ class _SignUpState extends State<SignUp> {
                         const SizedBox(height:10),
                         ClipRRect(
                           // borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
-                          child: Container(
+                          child: SizedBox(
                             // height: 65,
                             width: 290,
                             // color: Colors.grey,
@@ -183,8 +143,7 @@ class _SignUpState extends State<SignUp> {
                               controller: passController,
                               obscureText: obscureText,
                               decoration: InputDecoration(
-                                // prefixIcon:Icon(Icons.looks),
-                                prefixIcon:Icon(Icons.lock),
+                                prefixIcon:const Icon(Icons.lock),
                                 hintText: "Password",
                                 contentPadding: const EdgeInsets.symmetric(vertical: 2.0),
                                 suffixIcon:  IconButton(
@@ -212,7 +171,7 @@ class _SignUpState extends State<SignUp> {
                         const SizedBox(height:10),
                         ClipRRect(
                           // borderRadius: const BorderRadiusDirectional.all(Radius.circular(30)),
-                          child: Container(
+                          child: SizedBox(
                             // height: 65,
                             width: 290,
                             // color: Colors.grey,
@@ -279,5 +238,32 @@ class _SignUpState extends State<SignUp> {
       ),
 
     );
+  }
+  Future <void> SignApi() async {
+    // print("hiii");
+    String apiUrl = 'https://food-application-y9ow.onrender.com/user/signup';
+    final response = await http.post(
+        Uri.parse(apiUrl),
+        // headers: <String, String>{
+        //   'Content-Type': 'application/json'
+        // },
+        body:({
+          'username':nameController.text,
+          'email':emailController.text,
+          'password':passController.text,
+          'address':addController.text
+        })
+    );
+    // print("hiii");
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(response.body),),);
+    if (response.statusCode == 200) {
+      // print('API Response: ${response.body}');
+      await Navigator.pushNamed(context, MyRoutes.LoginRoutes);
+
+    } else {
+      // print('Failed to join the team. Status Code: ${response.statusCode}');
+      // print('Error Message: ${response.body}');
+    }
   }
 }
